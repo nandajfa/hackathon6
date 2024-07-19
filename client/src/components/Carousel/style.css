@@ -1,0 +1,89 @@
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+.feedback {
+  padding: 2rem;
+  background-color: #eff3cd;
+  text-align: center;
+  color: #605063;
+}
+
+.feedback h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feedback p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+.feedback-item blockquote {
+  background: #b2d5ba;
+  border-radius: 0.5rem; /* 8px */
+  padding: 1rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* 0 4px 8px */
+  margin: 0 auto;
+  max-width: 37.5rem; /* 600px */
+}
+
+.feedback-item blockquote p {
+  font-size: 1.125rem;
+  font-style: italic;
+  margin: 0;
+}
+
+.feedback-item blockquote footer {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  color: #605063;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .feedback {
+    padding: 1rem;
+  }
+
+  .feedback h2 {
+    font-size: 1.5rem;
+  }
+
+  .feedback p {
+    font-size: 1rem;
+  }
+
+  .feedback-item blockquote {
+    padding: 0.75rem;
+  }
+
+  .feedback-item blockquote p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback h2 {
+    font-size: 1.25rem;
+  }
+
+  .feedback p {
+    font-size: 0.875rem;
+  }
+
+  .feedback-item blockquote {
+    padding: 0.5rem;
+  }
+
+  .feedback-item blockquote p {
+    font-size: 0.875rem;
+  }
+
+  .feedback-item blockquote footer {
+    font-size: 0.875rem;
+  }
+}
