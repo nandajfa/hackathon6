@@ -6,7 +6,9 @@ const Header = () => {
     <header className="main-header">
       <nav>
         <h1>Linguix</h1>
-        <button>Login</button>
+        <a href="/login">
+          <button>Login</button>
+        </a>
       </nav>
     </header>
   )

@@ -17,7 +17,9 @@ const PriceSection = () => {
               <li>Ranking Público</li>
               <li>Suporte Limitado</li>
             </ul>
-            <button className="btn">Comece Agora</button>
+            <a href="/sign-up">
+              <button>Comece Agora</button>
+            </a>
           </div>
           <div className="pricing-card pro">
             <h3>Plano Pro</h3>
@@ -29,7 +31,7 @@ const PriceSection = () => {
               <li>Suporte Prioritário</li>
               <li>Acesso a Novos Idiomas</li>
             </ul>
-            <button className="btn">Assine Agora</button>
+            <button>Assine Agora</button>
           </div>
         </div>
       </Animated>

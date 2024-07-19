@@ -12,7 +12,9 @@ const Banner = () => {
               Aprenda idiomas de forma interativa com nossa plataforma
               gamificada.
             </p>
-            <button>Comece Agora</button>
+            <a href="/sign-up">
+              <button>Comece Agora</button>
+            </a>
           </div>
         </div>
       </section>

@@ -17,7 +17,7 @@ const Login = () => {
         <div className="text-container">
           <h1 className="text-login">
             Bem vindo de volta <br /> ao{' '}
-            <strong className="text-animation">PollySpeak</strong>
+            <strong className="text-animation">Linguix</strong>
           </h1>
           <a href="/" className="icon-container">
             <FontAwesomeIcon icon={faHouse} className="social-icon" />
