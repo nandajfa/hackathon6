@@ -9,7 +9,7 @@ const PriceSection = () => {
         <h2>Escolha o Plano Ideal para Você</h2>
         <div className="pricing-cards">
           <div className="pricing-card free">
-            <h3>Plano Gratuito</h3>
+            <h3>Plano Básico</h3>
             <p className="price">Grátis</p>
             <ul>
               <li>Quizzes Básicos</li>
