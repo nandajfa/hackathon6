@@ -3,7 +3,7 @@ import './style.css'
 
 const Header = () => {
   return (
-    <header>
+    <header className="main-header">
       <nav>
         <h1>PollySpeak</h1>
         <button>Login</button>
