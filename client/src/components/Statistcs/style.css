@@ -1,0 +1,30 @@
+.statistics {
+  background-color: #eff3cd;
+  padding: 2rem 0;
+}
+
+.statistics-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 80%;
+  margin: 0 auto;
+  color: #605063;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  margin: 1rem;
+  max-width: 200px;
+}
+
+.stat h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat p {
+  font-size: 1rem;
+  color: #555;
+}
