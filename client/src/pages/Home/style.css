@@ -1,0 +1,176 @@
+/* ABOUT */
+.about {
+  background-color: #b2d5ba;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  color: #605063;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6.25rem; /* 100px */
+}
+
+.about p {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #605063;
+  max-width: 68.75rem; /* 1100px */
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* FEATURES */
+.features {
+  margin: 0 auto;
+  background-color: #eff3cd;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 9.375rem; /* 150px */
+}
+
+.features p {
+  font-size: 1.5rem;
+  color: #605063;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
+  margin-top: 3.125rem; /* 50px */
+}
+
+.list ul {
+  list-style: none;
+  padding: 0;
+  color: #605063;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem; /* 20px */
+  animation: fadeIn 1s ease-out;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.list li i,
+.list li svg {
+  font-size: 1.5rem;
+  color: #248f8d;
+  margin-right: 0.625rem; /* 10px */
+}
+
+.list li strong {
+  margin-right: 0.625rem; /* 10px */
+  color: #248f8d;
+}
+
+/* FEEDBACK */
+.feedback {
+  padding: 5rem; /* 80px */
+}
+
+/* ACTION */
+.action {
+  background-color: #b2d5ba;
+  color: #605063;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 9.375rem; /* 150px */
+  gap: 5rem; /* 80px */
+}
+
+.action h2 {
+  font-size: 2rem;
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+.action p {
+  font-size: 1.2rem;
+  margin-bottom: 1.875rem; /* 30px */
+}
+
+.button button {
+  margin-right: 1.875rem; /* 30px */
+}
+.reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .features {
+    padding: 3.75rem; /* 60px */
+  }
+
+  .features p {
+    font-size: 1.1rem;
+  }
+
+  .about {
+    padding: 3.75rem; /* 60px */
+  }
+
+  .about p {
+    font-size: 1.1rem;
+    padding: 1.25rem; /* 20px */
+  }
+
+  .list li {
+    font-size: 1rem;
+  }
+
+  .feedback {
+    padding: 3.75rem; /* 60px */
+  }
+
+  .button button {
+    margin-bottom: 1.25rem; /* 20px */
+  }
+
+  .action {
+    gap: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 2.5rem; /* 40px */
+  }
+
+  .about p {
+    font-size: 1rem;
+    padding: 1.25rem; /* 20px */
+  }
+
+  .list li {
+    font-size: 1rem;
+  }
+
+  .features {
+    padding: 2.5rem; /* 40px */
+  }
+
+  .features p {
+    font-size: 1.1rem;
+  }
+
+  .feedback {
+    padding: 2.5rem; /* 40px */
+  }
+
+  .button button {
+    margin-bottom: 1.25rem; /* 20px */
+  }
+
+  .action {
+    gap: 0;
+  }
+}
