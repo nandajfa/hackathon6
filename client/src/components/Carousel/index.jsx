@@ -5,7 +5,7 @@ import './style.css'
 const feedbacks = [
   {
     quote:
-      'O PollySpeak tornou o aprendizado de idiomas muito mais divertido e motivador! Adoro ganhar medalhas e competir no ranking.',
+      'O Linguix tornou o aprendizado de idiomas muito mais divertido e motivador! Adoro ganhar medalhas e competir no ranking.',
     author: 'Maria Silva'
   },
   {
@@ -40,8 +40,8 @@ const FeedbackCarousel = () => {
     <section className="feedback">
       <h2>Depoimentos</h2>
       <p>
-        Veja como o <strong>PollySpeak</strong> está transformando a experiência
-        de aprendizado de idiomas de nossos usuários.
+        Veja como o <strong>Linguix</strong> está transformando a experiência de
+        aprendizado de idiomas de nossos usuários.
       </p>
       <Slider {...settings}>
         {feedbacks.map((feedback, index) => (

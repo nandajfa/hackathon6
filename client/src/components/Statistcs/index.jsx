@@ -1,4 +1,3 @@
-// src/components/Statistics/index.jsx
 import React, { useRef, useState, useEffect } from 'react'
 import CountUp from 'react-countup'
 import './style.css'

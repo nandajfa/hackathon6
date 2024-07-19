@@ -13,10 +13,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-about">
-          <h4>Sobre o PollySpeak</h4>
+          <h4>Sobre o Linguix</h4>
           <p>
-            O PollySpeak é uma plataforma gamificada para o aprendizado de
-            idiomas. Nossa missão é tornar o aprendizado divertido e eficaz.
+            O Linguix é uma plataforma gamificada para o aprendizado de idiomas.
+            Nossa missão é tornar o aprendizado divertido e eficaz.
           </p>
         </div>
         <div className="footer-links">
@@ -38,7 +38,7 @@ const Footer = () => {
         </div>
         <div className="footer-contact">
           <h4>Contato</h4>
-          <p>Email: contato@pollyspeak.com</p>
+          <p>Email: contato@Linguix.com</p>
           <p>Telefone: (11) 1234-5678</p>
           <div className="footer-social">
             <a
@@ -69,7 +69,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2024 PollySpeak. Todos os direitos reservados.</p>
+        <p>&copy; 2024 Linguix. Todos os direitos reservados.</p>
       </div>
     </footer>
   )

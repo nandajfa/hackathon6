@@ -26,22 +26,20 @@ const Home = () => {
         <section className="about">
           <Animated>
             <p>
-              O <strong>PollySpeak</strong> é uma plataforma educacional
-              inovadora que utiliza elementos de gamificação para tornar o
-              aprendizado de idiomas mais envolvente e eficaz. Nossa missão é
-              transformar a forma como você aprende novos idiomas, incorporando
-              mecânicas de jogos como pontos, medalhas, níveis e desafios para
-              motivá-lo a progredir em seus estudos de maneira divertida e
-              interativa.
+              O <strong>Linguix</strong> é uma plataforma educacional inovadora
+              que utiliza elementos de gamificação para tornar o aprendizado de
+              idiomas mais envolvente e eficaz. Nossa missão é transformar a
+              forma como você aprende novos idiomas, incorporando mecânicas de
+              jogos como pontos, medalhas, níveis e desafios para motivá-lo a
+              progredir em seus estudos de maneira divertida e interativa.
             </p>
           </Animated>
         </section>
         <section className="features">
           <Animated>
             <p>
-              Descubra as funcionalidades que fazem do{' '}
-              <strong>PollySpeak</strong> a melhor escolha para seu aprendizado
-              de idiomas.
+              Descubra as funcionalidades que fazem do <strong>Linguix</strong>{' '}
+              a melhor escolha para seu aprendizado de idiomas.
             </p>
             <div className="list">
               <ul>
@@ -87,7 +85,7 @@ const Home = () => {
             <div className="text">
               <h2>Pronto para Dominar um Novo Idioma?</h2>
               <p>
-                Junte-se ao <strong>PollySpeak</strong> hoje e comece a aprender
+                Junte-se ao <strong>Linguix</strong> hoje e comece a aprender
                 idiomas de forma divertida e interativa. Não perca tempo, a
                 jornada para o conhecimento começa agora!
               </p>
