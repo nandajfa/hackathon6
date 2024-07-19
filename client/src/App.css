@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+html {
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #605063;
+  color: #eff3cd;
+  cursor: pointer;
+  width: 200px;
+}
+
+button:hover {
+  background-color: #248f8d;
+  color: #fff;
+}
+
+.container-image {
+  animation: fadeIn 2s ease-out;
+}
+
+.container-image img {
+  width: 350px;
+  height: 350px;
+  border-radius: 20%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container-image img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
