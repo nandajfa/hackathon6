@@ -1,5 +1,4 @@
 import React from 'react'
-// import img from '../../assets/languages.jpg'
 import './style.css'
 
 const Banner = () => {
@@ -10,8 +9,8 @@ const Banner = () => {
           <div className="text">
             <h1>Domine Novos Idiomas com PollySpeak</h1>
             <p>
-              Aprenda idiomas de forma divertida e interativa com nossa
-              plataforma gamificada.
+              Aprenda idiomas de forma interativa com nossa plataforma
+              gamificada.
             </p>
             <button>Comece Agora</button>
           </div>
