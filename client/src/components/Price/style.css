@@ -1,8 +1,8 @@
 .pricing {
-  background-color: #b2d5ba;
+  background-color: #5a5c5e;
   padding: 5rem 2rem;
   text-align: center;
-  color: #605063;
+  color: #fff;
 }
 
 .pricing h2 {
@@ -18,9 +18,9 @@
 }
 
 .pricing-card {
-  background-color: #ffffff;
+  background-color: #6c6e70;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   padding: 2rem;
   max-width: 300px;
   text-align: center;
@@ -62,13 +62,13 @@
   margin-top: auto; /* Faz o botão ir para a parte inferior do cartão */
 }
 
-.free {
+/* .free {
   border: 2px solid #248f8d;
 }
 
 .pro {
   border: 2px solid #f5a623;
-}
+} */
 
 @media (max-width: 768px) {
   .pricing-cards {

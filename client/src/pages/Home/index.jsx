@@ -11,7 +11,6 @@ import Header from '../../components/Header'
 import HeroSection from '../../components/Banner'
 import Carousel from '../../components/Carousel'
 import Footer from '../../components/Footer'
-import img from '../../assets/section.jpg'
 import Animated from '../../components/Animation/animatedElement'
 import PriceSection from '../../components/Price'
 import Statistcs from '../../components/Statistcs'
@@ -84,11 +83,6 @@ const Home = () => {
           </Animated>
         </section>
         <section className="action">
-          <Animated>
-            <div className="container-image">
-              <img src={img} alt="Imagem" />
-            </div>
-          </Animated>
           <Animated>
             <div className="text">
               <h2>Pronto para Dominar um Novo Idioma?</h2>

@@ -1,7 +1,7 @@
 .footer {
-  background-color: #b2d5ba;
+  background-color: #3c3f41;
   padding: 5rem 0;
-  color: #605063;
+  color: #fff;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .footer-links a {
-  color: #605063;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .footer-social a {
-  color: #605063;
+  color: #fff;
   font-size: 1.5rem;
   transition: color 0.3s ease;
 }
