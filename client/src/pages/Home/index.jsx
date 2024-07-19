@@ -14,6 +14,7 @@ import Footer from '../../components/Footer'
 import img from '../../assets/section.jpg'
 import Animated from '../../components/Animation/animatedElement'
 import PriceSection from '../../components/Price'
+import Statistcs from '../../components/Statistcs'
 import './style.css'
 import '../../App.css'
 
@@ -104,6 +105,7 @@ const Home = () => {
           </Animated>
         </section>
       </main>
+      <Statistcs />
       <Footer />
     </>
   )
