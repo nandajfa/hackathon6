@@ -20,7 +20,7 @@ fastify.register(require('@fastify/cookie'), {
 const start = async () => {
   try {
     await fastify.listen({
-      port: 3003,
+      port: process.env.PORT,
       host: '0.0.0.0'
     })
     fastify.log.info(`Server is running at http://localhost:3003`)
