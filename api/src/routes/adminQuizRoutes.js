@@ -1,11 +1,11 @@
 const authenticate = require('../middleware/authMiddleware')
-const authorizeAdmin = require('../middleware/adminMiddleware')
+const authorizeAdmin = require('../middleware/authorizeAdmin')
 const adminQuizController = require('../controllers/adminQuizController')
 
 async function adminQuizRoutes(fastify, options) {
   fastify.get('/admin/quizzes', {
     schema: {
-      body: {
+      querystring: {
         type: 'object',
         required: ['table'],
         properties: {
@@ -19,7 +19,7 @@ async function adminQuizRoutes(fastify, options) {
 
   fastify.get('/admin/quizzes/:id', {
     schema: {
-      body: {
+      querystring: {
         type: 'object',
         required: ['table'],
         properties: {

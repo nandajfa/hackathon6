@@ -2,7 +2,7 @@ const quizService = require('../services/adminQuizService')
 
 async function getAllQuizzes(request, reply) {
   try {
-    const table = request.body
+    const { table } = request.query
     const quizzes = await quizService.getAllQuizzes(table)
     reply.send(quizzes)
   } catch (error) {
@@ -12,7 +12,7 @@ async function getAllQuizzes(request, reply) {
 
 async function getQuizById(request, reply) {
   try {
-    const table = request.body
+    const { table } = request.query
     const { id } = request.params
     const quiz = await quizService.getQuizById(id, table)
     reply.send(quiz)
@@ -58,7 +58,7 @@ async function updateQuiz(request, reply) {
 
 async function deleteQuiz(request, reply) {
   try {
-    const table = request.body.table
+    const { table } = request.body
     const { id } = request.params
     const deletedQuiz = await quizService.deleteQuiz(id, table)
     reply.send(deletedQuiz)
