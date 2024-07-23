@@ -56,9 +56,38 @@ const loginUser = async (reply, email, password) => {
     })
     return {
       message: 'Success',
-      user: { name: data.name, email: data.email }
+      user: { name: data.name, id: data.id }
     }
   }
 }
 
-module.exports = { registerUser, loginUser }
+const getUserById = async userId => {
+  const { data, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('id', userId)
+    .single()
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return data
+}
+
+const updateUserById = async (userId, updates) => {
+  const { data, error } = await supabase
+    .from('users')
+    .update(updates)
+    .eq('id', userId)
+    .select('*')
+    .single()
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return data
+}
+
+module.exports = { registerUser, loginUser, getUserById, updateUserById }
