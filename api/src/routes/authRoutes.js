@@ -1,4 +1,9 @@
-const { register, login } = require('../controllers/authController')
+const {
+  register,
+  login,
+  getUserProfile,
+  updateUserProfile
+} = require('../controllers/authController')
 
 async function authRoutes(fastify, options) {
   fastify.post('/register', {
@@ -27,6 +32,14 @@ async function authRoutes(fastify, options) {
       }
     },
     handler: login
+  })
+
+  fastify.get('/users/:id', {
+    handler: getUserProfile
+  })
+
+  fastify.put('/users/:id', {
+    handler: updateUserProfile
   })
 }
 
