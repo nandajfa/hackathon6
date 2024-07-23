@@ -1,26 +1,13 @@
 require('dotenv').config()
 const bcrypt = require('bcrypt')
-const jwt = require('fastify-jwt')
+const jwt = require('jsonwebtoken')
 const { supabase } = require('../db/supabase')
 
 const registerUser = async (name, email, password) => {
-  //   const hashedPassword = await bcrypt.hash(password, 10)
-  //   const { data, error } = await supabase
-  //     .from('users')
-  //     .insert([{ name, email, password: hashedPassword }])
-
-  //   if (error) {
-  //     throw new Error(error.message)
-  //   }
-  //   return data
-
   try {
-    console.log('Registering user:', { name, email, password })
-
     const hashedPassword = await bcrypt.hash(password, 10)
-    console.log('Hashed Password:', hashedPassword)
 
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('users')
       .insert([{ name, email, password: hashedPassword }])
 
@@ -29,15 +16,14 @@ const registerUser = async (name, email, password) => {
       throw new Error(error.message)
     }
 
-    console.log('User registered successfully:', data)
-    return data
+    return 'Successfully registered user'
   } catch (error) {
     console.error('Error registering user:', error)
     throw new Error('Failed to register user')
   }
 }
 
-const loginUser = async (email, password) => {
+const loginUser = async (reply, email, password) => {
   const { data, error } = await supabase
     .from('users')
     .select('*')
@@ -55,9 +41,24 @@ const loginUser = async (email, password) => {
 
   const token = jwt.sign(
     { id: data.id, email: data.email },
-    process.env.JWT_SECRET
+    process.env.JWT_SECRET,
+    { expiresIn: '24h' }
   )
-  return { token }
+
+  if (!token) {
+    return { message: 'Fail' }
+  } else {
+    reply.setCookie('token', token, {
+      httpOnly: true,
+      sameSite: 'Strict',
+      maxAge: 24 * 60 * 60,
+      path: '/'
+    })
+    return {
+      message: 'Success',
+      user: { name: data.name, email: data.email }
+    }
+  }
 }
 
 module.exports = { registerUser, loginUser }
