@@ -10,6 +10,11 @@ fastify.register(formbody)
 fastify.register(swagger)
 fastify.register(authRoutes, { prefix: '/api' })
 
+fastify.register(require('@fastify/cookie'), {
+  secret: process.env.COOKIE_SECRET,
+  parseOptions: {}
+})
+
 const start = async () => {
   try {
     await fastify.listen({
