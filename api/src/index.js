@@ -3,12 +3,14 @@ const fastify = require('fastify')()
 const cors = require('@fastify/cors')
 const formbody = require('@fastify/formbody')
 const authRoutes = require('./routes/authRoutes')
+const adminRoutes = require('./routes/adminQuizRoutes')
 const swagger = require('./plugins/swagger')
 
 fastify.register(cors, { origin: true })
 fastify.register(formbody)
 fastify.register(swagger)
 fastify.register(authRoutes, { prefix: '/api' })
+fastify.register(adminRoutes, { prefix: '/api' })
 
 fastify.register(require('@fastify/cookie'), {
   secret: process.env.COOKIE_SECRET,

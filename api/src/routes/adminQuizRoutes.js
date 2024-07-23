@@ -3,7 +3,7 @@ const authorizeAdmin = require('../middleware/adminMiddleware')
 const adminQuizController = require('../controllers/adminQuizController')
 
 async function adminQuizRoutes(fastify, options) {
-  fastify.get('/api/admin/quizzes', {
+  fastify.get('/admin/quizzes', {
     schema: {
       body: {
         type: 'object',
@@ -17,7 +17,7 @@ async function adminQuizRoutes(fastify, options) {
     handler: adminQuizController.getAllQuizzes
   })
 
-  fastify.get('/api/admin/quizzes/:id', {
+  fastify.get('/admin/quizzes/:id', {
     schema: {
       body: {
         type: 'object',
@@ -38,7 +38,7 @@ async function adminQuizRoutes(fastify, options) {
     handler: adminQuizController.getQuizById
   })
 
-  fastify.post('/api/admin/quizzes', {
+  fastify.post('/admin/quizzes', {
     schema: {
       body: {
         type: 'object',
@@ -64,7 +64,7 @@ async function adminQuizRoutes(fastify, options) {
     handler: adminQuizController.createQuiz
   })
 
-  fastify.put('/api/admin/quizzes/:id', {
+  fastify.put('/admin/quizzes/:id', {
     schema: {
       body: {
         type: 'object',
@@ -97,7 +97,7 @@ async function adminQuizRoutes(fastify, options) {
     handler: adminQuizController.updateQuiz
   })
 
-  fastify.delete('/api/admin/quizzes/:id', {
+  fastify.delete('/admin/quizzes/:id', {
     schema: {
       body: {
         type: 'object',
