@@ -4,7 +4,7 @@ const {
   getUserProfile,
   updateUserProfile
 } = require('../controllers/authController')
-
+const authenticate = require('../middleware/authMiddleware')
 async function authRoutes(fastify, options) {
   fastify.post('/register', {
     schema: {
@@ -35,10 +35,12 @@ async function authRoutes(fastify, options) {
   })
 
   fastify.get('/users/:id', {
+    preHandler: authenticate,
     handler: getUserProfile
   })
 
   fastify.put('/users/:id', {
+    preHandler: authenticate,
     handler: updateUserProfile
   })
 }
