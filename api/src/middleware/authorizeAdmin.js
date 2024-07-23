@@ -1,4 +1,6 @@
-const supabase = require('../db/supabase')
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
+const { supabase } = require('../db/supabase')
 
 async function authorizeAdmin(request, reply) {
   try {
@@ -30,8 +32,6 @@ async function authorizeAdmin(request, reply) {
     if (data.admin !== true) {
       return reply.code(403).send({ message: 'Forbidden' })
     }
-
-    reply.code(200).send({ message: 'Access granted' })
   } catch (error) {
     reply.code(500).send({ message: `Internal Server Error: ${error.message}` })
   }
