@@ -2,7 +2,9 @@ const {
   registerUser,
   loginUser,
   getUserById,
-  updateUserById
+  updateUserById,
+  logoutUser,
+  checkAuth
 } = require('../services/authService')
 
 const register = async (request, reply) => {
@@ -31,31 +33,56 @@ const getUserProfile = async (request, reply) => {
     const user = await getUserById(userId)
 
     if (!user) {
-      return reply.status(404).send({ error: 'User not found' })
+      return reply.code(404).send({ error: 'User not found' })
     }
 
     const { password, ...userWithoutPassword } = user
     reply.send(userWithoutPassword)
   } catch (error) {
-    reply.status(500).send({ error: error.message })
+    reply.code(500).send({ error: error.message })
   }
 }
 
 const updateUserProfile = async (request, reply) => {
   try {
     const userId = request.params.id
-    const { name, email } = request.body
+    const { name, email, password } = request.body
 
-    const updatedUser = await updateUserById(userId, { name, email })
+    const updatedUser = await updateUserById(userId, { name, email, password })
 
     if (!updatedUser) {
-      return reply.status(404).send({ error: 'User not found' })
+      return reply.code(404).send({ error: 'User not found' })
     }
 
     reply.send('Updated successfully')
   } catch (error) {
-    reply.status(500).send({ error: error.message })
+    reply.code(500).send({ error: error.message })
   }
 }
 
-module.exports = { register, login, getUserProfile, updateUserProfile }
+const logoutController = async (request, reply) => {
+  try {
+    const result = await logoutUser(request, reply)
+    reply.code(200).send(result)
+  } catch (error) {
+    reply.code(500).send({ error: error.message })
+  }
+}
+
+const checkAuthController = async (request, reply) => {
+  try {
+    const result = await checkAuth(request)
+    reply.code(200).send(result)
+  } catch (error) {
+    reply.code(500).send({ error: error.message })
+  }
+}
+
+module.exports = {
+  register,
+  login,
+  getUserProfile,
+  updateUserProfile,
+  logoutController,
+  checkAuthController
+}

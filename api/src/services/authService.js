@@ -56,7 +56,7 @@ const loginUser = async (reply, email, password) => {
     })
     return {
       message: 'Success',
-      user: { name: data.name, id: data.id }
+      user: { name: data.name, id: data.id, email: data.email }
     }
   }
 }
@@ -90,4 +90,41 @@ const updateUserById = async (userId, updates) => {
   return data
 }
 
-module.exports = { registerUser, loginUser, getUserById, updateUserById }
+const logoutUser = (request, reply) => {
+  reply.clearCookie('token')
+  return 'Token de autenticação removido com sucesso.'
+}
+
+const checkAuth = async request => {
+  const token = request.cookies.token
+
+  if (!token) {
+    return { authenticated: false }
+  }
+
+  try {
+    const secret = process.env.JWT_SECRET
+    return new Promise(resolve => {
+      jwt.verify(token, secret, err => {
+        if (err) {
+          console.error('Erro ao verificar o token:', err)
+          resolve({ authenticated: false })
+        } else {
+          resolve({ authenticated: true })
+        }
+      })
+    })
+  } catch (error) {
+    console.error('Erro ao obter o segredo:', error)
+    return { authenticated: false }
+  }
+}
+
+module.exports = {
+  registerUser,
+  loginUser,
+  getUserById,
+  updateUserById,
+  logoutUser,
+  checkAuth
+}
