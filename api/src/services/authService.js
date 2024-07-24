@@ -1,10 +1,15 @@
 require('dotenv').config()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { supabase } = require('../db/supabase')
+const { supabase, findUserByEmail } = require('../db/supabase')
 
 const registerUser = async (name, email, password) => {
   try {
+    const existingUser = await findUserByEmail(email)
+    if (existingUser) {
+      return { message: 'fail' }
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10)
 
     const { error } = await supabase
@@ -16,7 +21,7 @@ const registerUser = async (name, email, password) => {
       throw new Error(error.message)
     }
 
-    return 'Successfully registered user'
+    return { message: 'success' }
   } catch (error) {
     console.error('Error registering user:', error)
     throw new Error('Failed to register user')
