@@ -1,9 +1,9 @@
 import React from 'react'
-// import FailureNotification from '../../components/Notification/FailureNotification'
-// import SuccessNotification from '../../components/Notification/FailureNotification'
+import FailureNotification from '../../components/Notification/FailureNotification'
+import SuccessNotification from '../../components/Notification/FailureNotification'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-// import axios from 'axios'
+import axios from 'axios'
 import './style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
@@ -24,38 +24,38 @@ const Register = () => {
       )
   })
 
-  //   const handleSubmit = async (values, { setSubmitting }) => {
-  //     try {
-  //       const response = await axios.post(
-  //         'http://localhost:3003/auth/register',
-  //         values
-  //       )
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      const response = await axios.post(
+        'http://localhost:3003/api/register',
+        values
+      )
 
-  //       if (response.data.message === 'success') {
-  //         SuccessNotification({
-  //           message: 'Registrado com sucesso',
-  //           description: 'Você será redirecionado para a página de login.'
-  //         })
-  //         setTimeout(() => {
-  //           if (response.status === 201) {
-  //             window.location.href = '/login'
-  //           }
-  //         }, 3000)
-  //       } else {
-  //         FailureNotification({
-  //           message: 'Erro ao registrar',
-  //           description: 'Email já está em uso'
-  //         })
-  //       }
-  //       setSubmitting(false)
-  //     } catch (error) {
-  //       FailureNotification({
-  //         message: 'Erro ao registrar',
-  //         description: 'Erro interno do servidor'
-  //       })
-  //       setSubmitting(false)
-  //     }
-  //   }
+      if (response.data.message === 'success') {
+        SuccessNotification({
+          message: 'Registrado com sucesso',
+          description: 'Você será redirecionado para a página de login.'
+        })
+        setTimeout(() => {
+          if (response.status === 201) {
+            window.location.href = '/login'
+          }
+        }, 3000)
+      } else {
+        FailureNotification({
+          message: 'Erro ao registrar',
+          description: 'Email já está em uso'
+        })
+      }
+      setSubmitting(false)
+    } catch (error) {
+      FailureNotification({
+        message: 'Erro ao registrar',
+        description: 'Erro interno do servidor'
+      })
+      setSubmitting(false)
+    }
+  }
 
   return (
     <>
@@ -75,9 +75,8 @@ const Register = () => {
             <Formik
               initialValues={{ name: '', email: '', password: '' }}
               validationSchema={validationSchema}
-              //   onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
             >
-              {/* {({ isSubmitting }) => ( */}
               <Form>
                 <div className="user-box">
                   <label htmlFor="name">Nome</label>
@@ -87,7 +86,6 @@ const Register = () => {
                     id="name"
                     className="description"
                     aria-describedby="name-error"
-                    // aria-invalid={isSubmitting}
                     aria-required="true"
                   />
                   <ErrorMessage
@@ -104,7 +102,6 @@ const Register = () => {
                     name="email"
                     id="email"
                     aria-describedby="email-error"
-                    // aria-invalid={isSubmitting}
                     aria-required="true"
                   />
                   <ErrorMessage
@@ -121,7 +118,6 @@ const Register = () => {
                     name="password"
                     id="password"
                     aria-describedby="password-error"
-                    // aria-invalid={isSubmitting}
                     aria-required="true"
                   />
                   <ErrorMessage
@@ -131,18 +127,8 @@ const Register = () => {
                     id="password-error"
                   />
                 </div>
-                <button
-
-                //   type="submit"
-                // disabled={isSubmitting}
-                // aria-busy={isSubmitting}
-                // aria-label={isSubmitting ? 'Register...' : 'Sign up'}
-                >
-                  {/* {isSubmitting ? 'Register...' : 'Sign up'} */}
-                  Registrar
-                </button>
+                <button type="submit">Registrar</button>
               </Form>
-              {/* )} */}
             </Formik>
             <p className="p-login">
               Já tem conta?{' '}
