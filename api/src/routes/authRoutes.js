@@ -2,7 +2,9 @@ const {
   register,
   login,
   getUserProfile,
-  updateUserProfile
+  updateUserProfile,
+  logoutController,
+  checkAuthController
 } = require('../controllers/authController')
 const authenticate = require('../middleware/authMiddleware')
 async function authRoutes(fastify, options) {
@@ -42,6 +44,15 @@ async function authRoutes(fastify, options) {
   fastify.put('/users/:id', {
     preHandler: authenticate,
     handler: updateUserProfile
+  })
+
+  fastify.get('/check-auth', {
+    handler: checkAuthController
+  })
+
+  fastify.get('/logout', {
+    preHandler: authenticate,
+    handler: logoutController
   })
 }
 

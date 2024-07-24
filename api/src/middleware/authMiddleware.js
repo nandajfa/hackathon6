@@ -12,6 +12,7 @@ async function authenticate(request, reply) {
 
     const decoded = jwt.verify(token, secretKey)
     request.user = decoded
+    return
   } catch (error) {
     reply.code(401).send({ message: 'Unauthorized' })
   }
