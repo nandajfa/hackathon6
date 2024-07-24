@@ -1,0 +1,181 @@
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 70px;
+  background-color: #333;
+  color: white;
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  position: relative;
+  border-right: 1px solid #5f6266;
+}
+
+.sidebar.open {
+  width: 250px;
+  transform: translateX(0);
+}
+
+.sidebar.open .hide {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.btn-menu {
+  background-color: #248f8d;
+  padding: 15px 20px;
+  color: #fff;
+  font-size: 0.8rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  letter-spacing: 4px;
+  cursor: pointer;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.btn-menu:hover {
+  background-color: #61ada0;
+  color: white;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 20px;
+}
+
+.sidebar li {
+  padding: 15px;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  color: #5f6266;
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 1.3rem;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo-h2 {
+  color: #fff;
+  letter-spacing: 2px;
+  padding-bottom: 2px;
+  font-size: 2rem;
+  font-weight: 500;
+  transition: border-color 0.2s;
+  font-family: 'Montserrat';
+}
+
+.menu-toggle-left {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.menu-toggle-right {
+  cursor: pointer;
+  margin-right: 10px;
+  display: none;
+}
+
+.menu-toggle:hover {
+  color: #5f6266;
+}
+
+.content {
+  flex-grow: 1;
+  height: 100%;
+  padding: 20px;
+  background-color: #333;
+}
+
+.page-content {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  height: calc(100% - 40px);
+}
+
+.logout {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.logout:hover {
+  color: #5f6266;
+}
+
+.sidebar .hide-text {
+  padding: 5px;
+}
+
+.hide-text li span {
+  display: none;
+}
+
+.hide-text .btn-menu span {
+  display: none;
+}
+
+.hide-text .btn-menu {
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.hide-text .btn-menu .icon {
+  margin-right: 0;
+}
+
+.menu-toggle-right-hide {
+  display: block;
+}
+
+.menu-toggle-left-hide {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .menu-toggle-right-hide {
+    display: none;
+  }
+
+  .menu-toggle-left-hide {
+    display: none;
+  }
+}
+
+/* Novos estilos para o avatar e nome do usuário */
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+.user-info .avatar {
+  margin-right: 10px;
+}
+
+.user-info .user-name {
+  font-size: 1rem;
+  color: #fff;
+}
