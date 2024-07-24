@@ -6,7 +6,15 @@ const authRoutes = require('./routes/authRoutes')
 const adminRoutes = require('./routes/adminQuizRoutes')
 const swagger = require('./plugins/swagger')
 
-fastify.register(cors, { origin: true })
+fastify.register(cors, {
+  origin: (origin, cb) => {
+    // Permitir todas as origens
+    cb(null, true)
+  },
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+})
 fastify.register(formbody)
 fastify.register(swagger)
 fastify.register(authRoutes, { prefix: '/api' })
