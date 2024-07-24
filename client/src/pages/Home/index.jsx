@@ -90,7 +90,9 @@ const Home = () => {
                 jornada para o conhecimento começa agora!
               </p>
               <div className="button">
-                <button>Comece Agora</button>
+                <a href="/sign-up">
+                  <button>Comece Agora</button>
+                </a>
                 <button>Entre em Contato</button>
               </div>
             </div>
