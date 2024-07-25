@@ -7,7 +7,7 @@ async function quizRoutes(fastify) {
         difficulty: { type: 'string' }
       }
     },
-    handler: quizController
+    handler: quizController.getQuizzesByDifficulty
   })
 }
 
