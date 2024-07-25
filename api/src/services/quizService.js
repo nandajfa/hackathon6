@@ -1,46 +1,19 @@
-const { supabase } = require('../db/supabase')
+const supabase = require('../db/supabase')
 
-async function getAllQuizzes(table) {
-  const { data, error } = await supabase.from(table).select('*')
-  if (error) throw new Error(error.message)
-  return data
-}
-
-async function getQuizById(id, table) {
+async function getQuizzesByDifficulty(difficulty) {
   const { data, error } = await supabase
-    .from(table)
+    .from('quizzes')
     .select('*')
-    .eq('id', id)
-    .single()
-  if (error) throw new Error(error.message)
-  return data
-}
+    .eq('difficulty', difficulty)
+    .limit(5)
 
-async function createQuiz(quizData, table) {
-  const { data, error } = await supabase.from(table).insert([quizData])
-  if (error) throw new Error(error.message)
-  return data
-}
+  if (error) {
+    throw new Error(error.message)
+  }
 
-async function updateQuiz(id, quizData, table) {
-  const { data, error } = await supabase
-    .from(table)
-    .update(quizData)
-    .eq('id', id)
-  if (error) throw new Error(error.message)
-  return data
-}
-
-async function deleteQuiz(id, table) {
-  const { data, error } = await supabase.from(table).delete().eq('id', id)
-  if (error) throw new Error(error.message)
   return data
 }
 
 module.exports = {
-  getAllQuizzes,
-  getQuizById,
-  createQuiz,
-  updateQuiz,
-  deleteQuiz
+  getQuizzesByDifficulty
 }
