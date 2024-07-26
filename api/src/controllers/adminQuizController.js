@@ -1,6 +1,6 @@
 const quizService = require('../services/adminQuizService')
 
-async function getAllQuizzes(reply) {
+async function getAllQuizzes(request, reply) {
   try {
     const quizzes = await quizService.getAllQuizzes()
     reply.send(quizzes)
