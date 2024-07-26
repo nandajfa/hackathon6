@@ -1,9 +1,8 @@
 const quizService = require('../services/quizService')
 
-async function getQuizzesByDifficulty(request, reply) {
+async function getAllQuizzes(request, reply) {
   try {
-    const { difficulty } = request.query
-    const quizzes = await quizService.getQuizzesByDifficulty(difficulty)
+    const quizzes = await quizService.getAllQuizzes()
     reply.send(quizzes)
   } catch (error) {
     reply.code(500).send({ error: error.message })
@@ -11,5 +10,5 @@ async function getQuizzesByDifficulty(request, reply) {
 }
 
 module.exports = {
-  getQuizzesByDifficulty
+  getAllQuizzes
 }
