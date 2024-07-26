@@ -7,7 +7,7 @@ import SuccessNotification from '../../components/Notification/SuccessNotificati
 import { PoweroffOutlined } from '@ant-design/icons'
 import { logout, isAuthenticated } from '../../services/auth'
 import { useNavigate } from 'react-router-dom'
-
+import Quiz from '../Quiz'
 import {
   faAngleLeft,
   faHouse,
@@ -50,6 +50,19 @@ function Dashboard() {
     checkAuth()
     const user = getUser()
     setNameUser(user.name)
+
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setMenuOpen(false)
+      } else {
+        setMenuOpen(true)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    handleResize()
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   const handleLogout = async () => {
@@ -104,9 +117,6 @@ function Dashboard() {
           />
         </div>
         <ul className={!menuOpen ? 'hide-text' : ''}>
-          {/* <button onClick={() => handleItemClick('New')} className="btn-menu">
-            <span>Administrar</span>
-          </button> */}
           <div className="user-info">
             <FontAwesomeIcon icon={faUserCircle} size="2x" className="avatar" />
             <span className={`user-name ${menuOpen ? '' : 'hide'}`}>
@@ -138,8 +148,8 @@ function Dashboard() {
       </div>
       <div className="content">
         <div className="page-content">
-          {selectedItem === 'Home' && <h1>Teste</h1>}
-          {selectedItem === 'Quiz' && <h1>Home</h1>}
+          {selectedItem === 'Home' && <h1>Home</h1>}
+          {selectedItem === 'Quiz' && <Quiz />}
           {selectedItem === 'Ranking' && <p>Conteúdo da Página About</p>}
           {selectedItem === 'Profile' && <p>Conteúdo da Página Contact</p>}
         </div>

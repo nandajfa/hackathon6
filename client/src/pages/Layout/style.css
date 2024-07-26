@@ -11,6 +11,9 @@
   overflow-y: auto;
   position: relative;
   border-right: 1px solid #5f6266;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
 }
 
 .sidebar.open {
@@ -28,7 +31,7 @@
 
 .btn-menu {
   background-color: #248f8d;
-  padding: 15px 20px;
+  /* padding: 15px 20px; */
   color: #fff;
   font-size: 0.8rem;
   text-decoration: none;
@@ -69,11 +72,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  flex-shrink: 0;
 }
 
 .logo-h2 {
   color: #fff;
   letter-spacing: 2px;
+
   padding-bottom: 2px;
   font-size: 2rem;
   font-weight: 500;
@@ -153,17 +158,6 @@
   display: none;
 }
 
-@media only screen and (max-width: 768px) {
-  .menu-toggle-right-hide {
-    display: none;
-  }
-
-  .menu-toggle-left-hide {
-    display: none;
-  }
-}
-
-/* Novos estilos para o avatar e nome do usuário */
 .user-info {
   display: flex;
   align-items: center;
@@ -178,4 +172,30 @@
 .user-info .user-name {
   font-size: 1rem;
   color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+  .menu-toggle-right-hide {
+    display: none;
+  }
+
+  .logo-h2 {
+    display: none;
+  }
+
+  .user-info {
+    display: none;
+  }
+  .menu-toggle-left-hide {
+    display: none;
+  }
+
+  .sidebar li span {
+    display: none;
+  }
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
