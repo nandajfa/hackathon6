@@ -9,7 +9,6 @@ const swagger = require('./plugins/swagger')
 
 fastify.register(cors, {
   origin: (origin, cb) => {
-    // Permitir todas as origens
     cb(null, true)
   },
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
