@@ -16,7 +16,7 @@ const Footer = () => {
           <h4>Sobre o Linguix</h4>
           <p>
             O Linguix é uma plataforma gamificada para o aprendizado de idiomas.
-            Nossa missão é tornar o aprendizado divertido e eficaz.
+            Nossa missão é tornar o aprendizado interativo e eficaz.
           </p>
         </div>
         <div className="footer-links">
