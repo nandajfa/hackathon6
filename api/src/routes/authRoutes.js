@@ -7,13 +7,15 @@ const {
   checkAuthController
 } = require('../controllers/authController')
 const authenticate = require('../middleware/authMiddleware')
+
 async function authRoutes(fastify, options) {
   fastify.post('/register', {
     schema: {
       body: {
         type: 'object',
-        required: ['email', 'password'],
+        required: ['name', 'email', 'password'],
         properties: {
+          name: { type: 'string' },
           email: { type: 'string', format: 'email' },
           password: { type: 'string', minLength: 6 }
         }

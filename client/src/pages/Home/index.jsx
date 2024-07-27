@@ -31,7 +31,7 @@ const Home = () => {
               idiomas mais envolvente e eficaz. Nossa missão é transformar a
               forma como você aprende novos idiomas, incorporando mecânicas de
               jogos como pontos, medalhas, níveis e desafios para motivá-lo a
-              progredir em seus estudos de maneira divertida e interativa.
+              progredir em seus estudos de maneira interativa.
             </p>
           </Animated>
         </section>
@@ -86,8 +86,8 @@ const Home = () => {
               <h2>Pronto para Dominar um Novo Idioma?</h2>
               <p>
                 Junte-se ao <strong>Linguix</strong> hoje e comece a aprender
-                idiomas de forma divertida e interativa. Não perca tempo, a
-                jornada para o conhecimento começa agora!
+                idiomas de forma interativa. Não perca tempo, a jornada para o
+                conhecimento começa agora!
               </p>
               <div className="button">
                 <a href="/sign-up">

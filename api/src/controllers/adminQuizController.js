@@ -2,8 +2,7 @@ const quizService = require('../services/adminQuizService')
 
 async function getAllQuizzes(request, reply) {
   try {
-    const { table } = request.query
-    const quizzes = await quizService.getAllQuizzes(table)
+    const quizzes = await quizService.getAllQuizzes()
     reply.send(quizzes)
   } catch (error) {
     reply.code(500).send({ error: error.message })
@@ -12,9 +11,8 @@ async function getAllQuizzes(request, reply) {
 
 async function getQuizById(request, reply) {
   try {
-    const { table } = request.query
     const { id } = request.params
-    const quiz = await quizService.getQuizById(id, table)
+    const quiz = await quizService.getQuizById(id)
     reply.send(quiz)
   } catch (error) {
     reply.code(500).send({ error: error.message })
@@ -23,15 +21,8 @@ async function getQuizById(request, reply) {
 
 async function createQuiz(request, reply) {
   try {
-    const { table } = request.body
-    const quizData = {
-      question: request.body.question,
-      option1: request.body.option1,
-      option2: request.body.option2,
-      option3: request.body.option3,
-      answer: request.body.answer
-    }
-    const newQuiz = await quizService.createQuiz(quizData, table)
+    const quizData = request.body
+    const newQuiz = await quizService.createQuiz(quizData)
     reply.code(201).send(newQuiz)
   } catch (error) {
     reply.code(500).send({ error: error.message })
@@ -40,16 +31,9 @@ async function createQuiz(request, reply) {
 
 async function updateQuiz(request, reply) {
   try {
-    const { table } = request.body
+    const quizData = request.body
     const { id } = request.params
-    const quizData = {
-      question: request.body.question,
-      option1: request.body.option1,
-      option2: request.body.option2,
-      option3: request.body.option3,
-      answer: request.body.answer
-    }
-    const updatedQuiz = await quizService.updateQuiz(id, quizData, table)
+    const updatedQuiz = await quizService.updateQuiz(id, quizData)
     reply.send(updatedQuiz)
   } catch (error) {
     reply.code(500).send({ error: error.message })
@@ -58,9 +42,8 @@ async function updateQuiz(request, reply) {
 
 async function deleteQuiz(request, reply) {
   try {
-    const { table } = request.body
     const { id } = request.params
-    const deletedQuiz = await quizService.deleteQuiz(id, table)
+    const deletedQuiz = await quizService.deleteQuiz(id)
     reply.send(deletedQuiz)
   } catch (error) {
     reply.code(500).send({ error: error.message })

@@ -1,14 +1,14 @@
 const { supabase } = require('../db/supabase')
 
-async function getAllQuizzes(table) {
-  const { data, error } = await supabase.from(table).select('*')
+async function getAllQuizzes() {
+  const { data, error } = await supabase.from('quiz_questions').select('*')
   if (error) throw new Error(error.message)
   return data
 }
 
-async function getQuizById(id, table) {
+async function getQuizById(id) {
   const { data, error } = await supabase
-    .from(table)
+    .from('quiz_questions')
     .select('*')
     .eq('id', id)
     .single()
@@ -16,23 +16,28 @@ async function getQuizById(id, table) {
   return data
 }
 
-async function createQuiz(quizData, table) {
-  const { data, error } = await supabase.from(table).insert([quizData])
+async function createQuiz(quizData) {
+  const { data, error } = await supabase
+    .from('quiz_questions')
+    .insert([quizData])
   if (error) throw new Error(error.message)
   return data
 }
 
-async function updateQuiz(id, quizData, table) {
+async function updateQuiz(id, quizData) {
   const { data, error } = await supabase
-    .from(table)
+    .from('quiz_questions')
     .update(quizData)
     .eq('id', id)
   if (error) throw new Error(error.message)
   return data
 }
 
-async function deleteQuiz(id, table) {
-  const { data, error } = await supabase.from(table).delete().eq('id', id)
+async function deleteQuiz(id) {
+  const { data, error } = await supabase
+    .from('quiz_questions')
+    .delete()
+    .eq('id', id)
   if (error) throw new Error(error.message)
   return data
 }
