@@ -8,6 +8,7 @@ import { PoweroffOutlined } from '@ant-design/icons'
 import { logout, isAuthenticated } from '../../services/auth'
 import { useNavigate } from 'react-router-dom'
 import Quiz from '../Quiz'
+import Ranking from '../Ranking'
 import {
   faAngleLeft,
   faHouse,
@@ -150,7 +151,7 @@ function Dashboard() {
         <div className="page-content">
           {selectedItem === 'Home' && <h1>Home</h1>}
           {selectedItem === 'Quiz' && <Quiz />}
-          {selectedItem === 'Ranking' && <p>Conteúdo da Página About</p>}
+          {selectedItem === 'Ranking' && <Ranking />}
           {selectedItem === 'Profile' && <p>Conteúdo da Página Contact</p>}
         </div>
       </div>

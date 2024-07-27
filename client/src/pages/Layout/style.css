@@ -29,25 +29,6 @@
   display: none;
 }
 
-.btn-menu {
-  background-color: #248f8d;
-  /* padding: 15px 20px; */
-  color: #fff;
-  font-size: 0.8rem;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: background-color 0.2s, box-shadow 0.2s;
-  letter-spacing: 4px;
-  cursor: pointer;
-  border-radius: 2px;
-  margin-bottom: 20px;
-}
-
-.btn-menu:hover {
-  background-color: #61ada0;
-  color: white;
-}
-
 .sidebar ul {
   list-style: none;
   padding: 20px;

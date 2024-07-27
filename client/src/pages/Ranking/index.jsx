@@ -10,7 +10,9 @@ const Ranking = () => {
   useEffect(() => {
     const fetchRanking = async () => {
       try {
-        const response = await axios.get('/api/ranking')
+        const response = await axios.get('http://localhost:3003/api/ranking', {
+          withCredentials: true
+        })
         setRanking(response.data)
       } catch (err) {
         setError('Erro ao carregar ranking.')
@@ -23,6 +25,7 @@ const Ranking = () => {
   }, [])
   return (
     <div className="ranking-container">
+      <h2>Quiz Ranking</h2>
       {loading && <p>Carregando...</p>}
       {error && <p>{error}</p>}
       {!loading && !error && (
@@ -32,14 +35,16 @@ const Ranking = () => {
               <th>Posição</th>
               <th>Usuário</th>
               <th>Pontuação</th>
+              <th>Level</th>
             </tr>
           </thead>
           <tbody>
             {ranking.map((user, index) => (
-              <tr key={user.id}>
+              <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{user.username}</td>
-                <td>{user.score}</td>
+                <td>{user.name}</td>
+                <td>{user.points}</td>
+                <td>{user.level}</td>
               </tr>
             ))}
           </tbody>
