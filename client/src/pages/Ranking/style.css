@@ -5,9 +5,12 @@
   text-align: center;
   overflow-y: auto;
   color: #fff;
+  background-color: #1d1f21;
 }
 
-.ranking-container {
+.ranking-container h2 {
+  border-bottom: 2px solid #fff;
+  padding-bottom: 15px;
 }
 
 .ranking-table-container {

@@ -275,6 +275,8 @@ import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import Quiz from 'react-quiz-component'
 import { Button, Modal } from 'antd'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLevelUpAlt, faCoins } from '@fortawesome/free-solid-svg-icons'
 import './style.css'
 
 const QuizContainer = () => {
@@ -483,9 +485,16 @@ const QuizContainer = () => {
 
   return (
     <div className="quiz-container">
+      <h2>Quizzes</h2>
       <div className="progress">
-        <p>Level: {level}</p>
-        <p>Points: {points}</p>
+        <p>
+          {' '}
+          <FontAwesomeIcon icon={faLevelUpAlt} /> Level: {level}
+        </p>
+        <p>
+          {' '}
+          <FontAwesomeIcon icon={faCoins} /> Points: {points}
+        </p>
       </div>
       <div className="quiz-list">
         {quizzes.map(quiz => (
