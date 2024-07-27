@@ -1,8 +1,11 @@
-async function quizRoutes(fastify) {
+const authenticate = require('../middleware/authMiddleware')
+const rankingController = require('../controllers/rankingController')
+
+async function rankingRoutes(fastify) {
   fastify.get('/ranking', {
     preHandler: authenticate,
-    handler: quizController.getAllQuizzes
+    handler: rankingController.getRanking
   })
 }
 
-module.exports = quizRoutes
+module.exports = rankingRoutes
