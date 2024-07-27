@@ -5,6 +5,7 @@ const formbody = require('@fastify/formbody')
 const authRoutes = require('./routes/authRoutes')
 const adminRoutes = require('./routes/adminQuizRoutes')
 const quizRoutes = require('./routes/quizRoutes')
+const rankingRoutes = require('./routes/rankingRoutes')
 const swagger = require('./plugins/swagger')
 
 fastify.register(cors, {
@@ -20,6 +21,7 @@ fastify.register(swagger)
 fastify.register(authRoutes, { prefix: '/api' })
 fastify.register(adminRoutes, { prefix: '/api' })
 fastify.register(quizRoutes, { prefix: '/api' })
+fastify.register(rankingRoutes, { prefix: '/api' })
 
 fastify.register(require('@fastify/cookie'), {
   secret: process.env.COOKIE_SECRET,
