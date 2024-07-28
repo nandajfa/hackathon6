@@ -40,7 +40,6 @@ async function submitAnswers(request, reply) {
       points,
       level
     )
-
     reply.send(result)
   } catch (error) {
     reply.code(500).send({ error: error.message })
