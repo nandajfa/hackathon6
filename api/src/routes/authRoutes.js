@@ -39,11 +39,29 @@ async function authRoutes(fastify, options) {
   })
 
   fastify.get('/users/:id', {
+    schema: {
+      params: {
+        type: 'object',
+        required: ['id'],
+        properties: {
+          id: { type: 'string' }
+        }
+      }
+    },
     preHandler: authenticate,
     handler: getUserProfile
   })
 
   fastify.put('/users/:id', {
+    schema: {
+      params: {
+        type: 'object',
+        required: ['id'],
+        properties: {
+          id: { type: 'string' }
+        }
+      }
+    },
     preHandler: authenticate,
     handler: updateUserProfile
   })
