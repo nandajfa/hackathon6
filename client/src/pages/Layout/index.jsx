@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import Quiz from '../Quiz'
 import Ranking from '../Ranking'
 import Dashboard from '../Dashboard'
+import Profile from '../Profile'
 import {
   faAngleLeft,
   faHouse,
@@ -141,7 +142,7 @@ function Layout() {
           {selectedItem === 'Dashboard' && <Dashboard />}
           {selectedItem === 'Quiz' && <Quiz />}
           {selectedItem === 'Ranking' && <Ranking />}
-          {selectedItem === 'Profile' && <p>Conteúdo da Página Contact</p>}
+          {selectedItem === 'Profile' && <Profile />}
         </div>
       </div>
     </div>
