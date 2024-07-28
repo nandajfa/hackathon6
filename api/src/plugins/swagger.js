@@ -2,7 +2,7 @@ const fastifySwagger = require('@fastify/swagger')
 
 async function swagger(fastify, options) {
   fastify.register(fastifySwagger, {
-    routePrefix: '/documentation',
+    routePrefix: '/api/documentation',
     swagger: {
       info: {
         title: 'Quiz App API',

@@ -34,11 +34,13 @@ async function updateQuiz(id, quizData) {
 }
 
 async function deleteQuiz(id) {
+  console.log(id)
   const { data, error } = await supabase
     .from('quiz_questions')
     .delete()
     .eq('id', id)
   if (error) throw new Error(error.message)
+  console.log(data)
   return data
 }
 
