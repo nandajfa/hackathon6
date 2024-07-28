@@ -189,19 +189,14 @@ const QuizContainer = () => {
           level: updatedLevel
         }
 
-        const response = axios.post(
-          'http://localhost:3003/api/quizzes/submit',
-          payload,
-          { withCredentials: true }
-        )
-        const data = response.data
-        console.log(data)
-        console.log('response', response)
-
+        axios.post('http://localhost:3003/api/quizzes/submit', payload, {
+          withCredentials: true
+        })
         SuccessNotification({
           message: 'Respostas enviadas',
           description: ''
         })
+        setQuizResult(null)
       }
     } catch (error) {
       console.error('Error updating user progress:', error)
