@@ -1,0 +1,36 @@
+.quiz-form-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.quiz-form-modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-form-modal label {
+  margin-top: 10px;
+}
+
+.quiz-form-modal input {
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.quiz-form-modal button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #248f8d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.quiz-form-modal button:hover {
+  background-color: #61ada0;
+}

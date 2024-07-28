@@ -1,0 +1,28 @@
+.quiz-list-page {
+  padding: 20px;
+  background-color: #333;
+}
+
+.quiz-list-page table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+}
+
+.quiz-list-page th,
+.quiz-list-page td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.quiz-list-page button {
+  padding: 5px 10px;
+  background-color: #248f8d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.quiz-list-page button:hover {
+  background-color: #61ada0;
+}
