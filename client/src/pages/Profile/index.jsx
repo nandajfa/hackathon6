@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { getUser } from '../../services/auth'
+import { getUser, setUser } from '../../services/auth'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
@@ -37,6 +37,8 @@ const Profile = () => {
       )
       if (response.status === 200) {
         setSuccessMessage('Perfil atualizado com sucesso!')
+        const updatedUser = { ...user, name, email }
+        setUser(updatedUser)
       }
     } catch (error) {
       console.error('Erro ao atualizar perfil:', error)
