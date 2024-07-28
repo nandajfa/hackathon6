@@ -194,12 +194,14 @@ const QuizContainer = () => {
           payload,
           { withCredentials: true }
         )
-        if (response.status === 200) {
-          SuccessNotification({
-            message: 'Respostas enviadas',
-            description: ''
-          })
-        }
+        const data = response.data
+        console.log(data)
+        console.log('response', response)
+
+        SuccessNotification({
+          message: 'Respostas enviadas',
+          description: ''
+        })
       }
     } catch (error) {
       console.error('Error updating user progress:', error)
@@ -237,6 +239,15 @@ const QuizContainer = () => {
                     onComplete={handleQuizComplete}
                   />
                   <button onClick={handleSubmit}>Enviar respostas</button>
+                  {quizResult && (
+                    <div className="quiz-result-summary">
+                      <p>
+                        Você acertou {quizResult.correctAnswers} de{' '}
+                        {quizResult.totalQuestions} perguntas
+                      </p>
+                      <p>Pontuação total: {quizResult.totalPoints}</p>
+                    </div>
+                  )}
                   <Modal
                     open={levelUpVisible}
                     onCancel={() => setLevelUpVisible(false)}

@@ -69,6 +69,11 @@
   color: #248f8d;
 }
 
+.quiz-result-summary {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .quiz-list {
     flex-direction: column;
