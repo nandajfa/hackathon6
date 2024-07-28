@@ -17,7 +17,7 @@
 }
 
 .sidebar.open {
-  width: 250px;
+  width: 200px;
   transform: translateX(0);
 }
 
@@ -139,23 +139,7 @@
   display: none;
 }
 
-.user-info {
-  display: flex;
-  align-items: center;
-  margin-left: 15px;
-  margin-bottom: 20px;
-}
-
-.user-info .avatar {
-  margin-right: 10px;
-}
-
-.user-info .user-name {
-  font-size: 1rem;
-  color: #fff;
-}
-
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 912px) {
   .menu-toggle-right-hide {
     display: none;
   }
@@ -164,16 +148,14 @@
     display: none;
   }
 
-  .user-info {
-    display: none;
-  }
   .menu-toggle-left-hide {
     display: none;
   }
 
   .sidebar li span {
-    display: none;
+    display: none !important;
   }
+
   .sidebar {
     display: flex;
     flex-direction: column;

@@ -26,6 +26,7 @@ const Ranking = () => {
   return (
     <div className="ranking-container">
       <h2>Quiz Ranking</h2>
+      <hr className="divider" />
       {loading && <p>Carregando...</p>}
       {error && <p>{error}</p>}
       {!loading && !error && (

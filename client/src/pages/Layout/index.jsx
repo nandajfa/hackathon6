@@ -9,6 +9,7 @@ import { logout, isAuthenticated } from '../../services/auth'
 import { useNavigate } from 'react-router-dom'
 import Quiz from '../Quiz'
 import Ranking from '../Ranking'
+import Dashboard from '../Dashboard'
 import {
   faAngleLeft,
   faHouse,
@@ -16,17 +17,13 @@ import {
   faAngleRight,
   faQuestionCircle,
   faTrophy,
-  faUser,
-  faUserCircle
+  faUser
 } from '@fortawesome/free-solid-svg-icons'
-import { getUser } from '../../services/auth'
 
-function Dashboard() {
+function Layout() {
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(true)
   const [selectedItem, setSelectedItem] = useState(null)
-
-  const [nameUser, setNameUser] = useState('')
 
   useEffect(() => {
     const storedSelectedItem = localStorage.getItem('selectedItem')
@@ -49,8 +46,6 @@ function Dashboard() {
       }
     }
     checkAuth()
-    const user = getUser()
-    setNameUser(user.name)
 
     const handleResize = () => {
       if (window.innerWidth <= 768) {
@@ -118,15 +113,9 @@ function Dashboard() {
           />
         </div>
         <ul className={!menuOpen ? 'hide-text' : ''}>
-          <div className="user-info">
-            <FontAwesomeIcon icon={faUserCircle} size="2x" className="avatar" />
-            <span className={`user-name ${menuOpen ? '' : 'hide'}`}>
-              {nameUser}
-            </span>
-          </div>
-          <li onClick={() => handleItemClick('Home')}>
+          <li onClick={() => handleItemClick('Dashboard')}>
             <FontAwesomeIcon className="icon" icon={faHouse} />
-            <span>Home</span>
+            <span>Dashboard</span>
           </li>
           <li onClick={() => handleItemClick('Quiz')}>
             <FontAwesomeIcon className="icon" icon={faQuestionCircle} />
@@ -149,7 +138,7 @@ function Dashboard() {
       </div>
       <div className="content">
         <div className="page-content">
-          {selectedItem === 'Home' && <h1>Home</h1>}
+          {selectedItem === 'Dashboard' && <Dashboard />}
           {selectedItem === 'Quiz' && <Quiz />}
           {selectedItem === 'Ranking' && <Ranking />}
           {selectedItem === 'Profile' && <p>Conteúdo da Página Contact</p>}
@@ -159,4 +148,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Layout
