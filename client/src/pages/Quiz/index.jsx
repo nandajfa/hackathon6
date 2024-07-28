@@ -1,282 +1,9 @@
-// import React, { useState, useEffect, useCallback } from 'react'
-// import axios from 'axios'
-// import { Modal, Radio, Button, Row, Col } from 'antd'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faLevelUpAlt, faCoins } from '@fortawesome/free-solid-svg-icons'
-// import { getUser } from '../../services/auth'
-// import './style.css'
-
-// const QuizCard = ({ title, difficulty, onClick, answered }) => {
-//   return (
-//     <div
-//       className={`quiz-card ${answered ? 'answered' : ''}`}
-//       onClick={onClick}
-//     >
-//       <h3>{title}</h3>
-//       <p>{difficulty}</p>
-//     </div>
-//   )
-// }
-
-// const QuizContainer = () => {
-//   const [level, setLevel] = useState(1)
-//   const [points, setPoints] = useState(0)
-//   const [questions, setQuestions] = useState([])
-//   const [currentQuestions, setCurrentQuestions] = useState([])
-//   const [currentQuestionsIndex, setCurrentQuestionsIndex] = useState(null)
-//   const [selectedAnswers, setSelectedAnswers] = useState({})
-//   const [isModalVisible, setIsModalVisible] = useState(false)
-//   const [answeredCards, setAnsweredCards] = useState(new Set())
-//   const [shuffledOptions, setShuffledOptions] = useState({})
-
-//   const user = getUser()
-
-//   useEffect(() => {
-//     const fetchUserData = async () => {
-//       try {
-//         const response = await axios.get(
-//           `http://localhost:3003/api/quizzes/progress/${user.id}`,
-//           {
-//             withCredentials: true
-//           }
-//         )
-
-//         const userProgress = response.data
-//         if (userProgress) {
-//           setPoints(userProgress.points)
-//           setLevel(userProgress.level)
-//         }
-//       } catch (error) {
-//         console.error('Error fetching user data:', error)
-//       }
-//     }
-
-//     if (user?.id) {
-//       fetchUserData()
-//     }
-//   }, [user?.id])
-
-//   const fetchQuestions = useCallback(async () => {
-//     try {
-//       const response = await axios.get(`http://localhost:3003/api/quizzes`, {
-//         withCredentials: true
-//       })
-
-//       const groupedQuestions = { easy: [], medium: [], difficult: [] }
-//       response.data.forEach(q => groupedQuestions[q.difficulty].push(q))
-
-//       const formattedQuestions = []
-//       let currentCard = { title: '', difficulty: '', questions: [] }
-//       let cardCounter = 1
-
-//       Object.keys(groupedQuestions).forEach(difficulty => {
-//         groupedQuestions[difficulty].forEach((question, index) => {
-//           currentCard.questions.push(question)
-
-//           if (currentCard.questions.length === 5) {
-//             currentCard.title = `Quiz ${cardCounter++}`
-//             currentCard.difficulty = difficulty
-//             formattedQuestions.push(currentCard)
-//             currentCard = { title: '', difficulty: '', questions: [] }
-//           }
-
-//           if (
-//             index === groupedQuestions[difficulty].length - 1 &&
-//             currentCard.questions.length > 0
-//           ) {
-//             if (currentCard.questions.length >= 3) {
-//               currentCard.title = `Quiz ${cardCounter++}`
-//               currentCard.difficulty = difficulty
-//               formattedQuestions.push(currentCard)
-//             } else if (formattedQuestions.length > 0) {
-//               const lastCard = formattedQuestions[formattedQuestions.length - 1]
-//               if (
-//                 lastCard.questions.length + currentCard.questions.length <=
-//                 5
-//               ) {
-//                 lastCard.questions.push(...currentCard.questions)
-//               } else {
-//                 const remainingQuestions = 5 - lastCard.questions.length
-//                 lastCard.questions.push(
-//                   ...currentCard.questions.slice(0, remainingQuestions)
-//                 )
-//                 currentCard.questions =
-//                   currentCard.questions.slice(remainingQuestions)
-//                 if (currentCard.questions.length >= 3) {
-//                   currentCard.title = `Quiz ${cardCounter++}`
-//                   currentCard.difficulty = difficulty
-//                   formattedQuestions.push(currentCard)
-//                 }
-//               }
-//             }
-//           }
-//         })
-//       })
-
-//       console.log(formattedQuestions)
-//       setQuestions(formattedQuestions)
-//     } catch (error) {
-//       console.error('Error fetching questions:', error)
-//     }
-//   }, [])
-
-//   useEffect(() => {
-//     fetchQuestions()
-//   }, [fetchQuestions])
-
-//   const handleCardClick = index => {
-//     if (answeredCards.has(index)) return
-//     const selectedQuestions = questions[index].questions
-//     setCurrentQuestions(selectedQuestions)
-//     setCurrentQuestionsIndex(index)
-//     setSelectedAnswers({})
-//     openModalWithShuffledOptions(selectedQuestions)
-//   }
-
-//   const handleAnswerChange = (questionId, answer) => {
-//     setSelectedAnswers(prev => ({
-//       ...prev,
-//       [questionId]: answer
-//     }))
-//   }
-
-//   const handleModalClose = () => {
-//     setIsModalVisible(false)
-//     setSelectedAnswers({})
-//   }
-
-//   const handleSubmit = async () => {
-//     const answers = currentQuestions.map(question => ({
-//       question_id: question.id,
-//       user_answer: selectedAnswers[question.id],
-//       difficulty: question.difficulty
-//     }))
-
-//     const payload = {
-//       answers,
-//       user_id: user.id
-//     }
-
-//     try {
-//       const response = await axios.post(
-//         'http://localhost:3003/api/quizzes/submit',
-//         payload,
-//         { withCredentials: true }
-//       )
-//       const correctAnswers = response.data.correct
-
-//       setAnsweredCards(prev => new Set(prev).add(currentQuestionsIndex))
-
-//       handleModalClose()
-//       alert(`You got ${correctAnswers} correct answers!`)
-//     } catch (error) {
-//       console.error('Error submitting answers:', error)
-//       alert(
-//         'There was an error submitting your answers. Please try again later.'
-//       )
-//     }
-//   }
-
-//   const shuffleOptions = question => {
-//     const options = [
-//       question.option1,
-//       question.option2,
-//       question.option3,
-//       question.answer
-//     ]
-//     for (let i = options.length - 1; i > 0; i--) {
-//       const j = Math.floor(Math.random() * (i + 1))
-//       ;[options[i], options[j]] = [options[j], options[i]]
-//     }
-//     return options
-//   }
-
-//   const openModalWithShuffledOptions = questions => {
-//     const shuffled = {}
-//     questions.forEach(question => {
-//       shuffled[question.id] = shuffleOptions(question)
-//     })
-//     setShuffledOptions(shuffled)
-//     setIsModalVisible(true)
-//   }
-
-//   return (
-//     <div className="quiz-container">
-//       <div className="progress">
-//         <p>
-//           <FontAwesomeIcon icon={faLevelUpAlt} /> Level: {level}
-//         </p>
-//         <p>
-//           <FontAwesomeIcon icon={faCoins} /> Points: {points}
-//         </p>
-//       </div>
-//       <div className="quiz-list">
-//         {questions.map((quiz, index) => (
-//           <QuizCard
-//             key={index}
-//             title={quiz.title}
-//             difficulty={quiz.difficulty}
-//             onClick={() => handleCardClick(index)}
-//             answered={answeredCards.has(index)}
-//           />
-//         ))}
-//       </div>
-
-//       <Modal
-//         open={isModalVisible}
-//         onCancel={handleModalClose}
-//         footer={
-//           <Button type="primary" onClick={handleSubmit}>
-//             Submit
-//           </Button>
-//         }
-//       >
-//         {currentQuestions.map((question, qIndex) => {
-//           const options = shuffledOptions[question.id]
-//           return (
-//             <div key={qIndex} style={{ marginBottom: '20px' }}>
-//               <Row>
-//                 <Col span={24}>
-//                   <p>
-//                     <strong>
-//                       {qIndex + 1}. {question.question}
-//                     </strong>
-//                   </p>
-//                 </Col>
-//               </Row>
-//               <Row>
-//                 <Col span={24}>
-//                   <Radio.Group
-//                     onChange={e =>
-//                       handleAnswerChange(question.id, e.target.value)
-//                     }
-//                     value={selectedAnswers[question.id]}
-//                     style={{ display: 'flex', flexDirection: 'column' }}
-//                   >
-//                     {options.map((option, oIndex) => (
-//                       <Radio key={oIndex} value={option}>
-//                         {option}
-//                       </Radio>
-//                     ))}
-//                   </Radio.Group>
-//                 </Col>
-//               </Row>
-//             </div>
-//           )
-//         })}
-//       </Modal>
-//     </div>
-//   )
-// }
-
-// export default QuizContainer
 import { getUser } from '../../services/auth'
+import SuccessNotification from '../../components/Notification/SuccessNotification'
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import Quiz from 'react-quiz-component'
 import { Button, Modal } from 'antd'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLevelUpAlt, faCoins } from '@fortawesome/free-solid-svg-icons'
 import './style.css'
 
 const QuizContainer = () => {
@@ -284,8 +11,8 @@ const QuizContainer = () => {
   const [points, setPoints] = useState(0)
   const [quizzes, setQuizzes] = useState([])
   const [selectedQuiz, setSelectedQuiz] = useState(null)
-  const [modalQuizVisible, setModalQuizVisible] = useState(false)
   const [quizResult, setQuizResult] = useState(null)
+  const [levelUpVisible, setLevelUpVisible] = useState(false)
   const user = getUser()
 
   useEffect(() => {
@@ -351,6 +78,7 @@ const QuizContainer = () => {
   const fetchQuestions = useCallback(async () => {
     try {
       const questions = await getQuestions()
+
       const groupedQuestions = { easy: [], medium: [], difficult: [] }
       questions.forEach(q => groupedQuestions[q.difficulty].push(q))
 
@@ -371,7 +99,7 @@ const QuizContainer = () => {
               question.answer
             ],
             correctAnswer: 4,
-            messageForCorrectAnswer: 'Resposta certa, parabéns! :)',
+            messageForCorrectAnswer: 'Certo, parabéns! :)',
             messageForIncorrectAnswer: 'Não foi dessa vez. :(',
             explanation: '',
             point: '20'
@@ -427,14 +155,6 @@ const QuizContainer = () => {
     fetchQuestions()
   }, [fetchQuestions])
 
-  const customResultPage = () => {
-    return (
-      <div>
-        <h1>Quiz finalizado</h1>
-      </div>
-    )
-  }
-
   const handleQuizComplete = async result => {
     const questions = result.questions.map(question => ({
       question: question.question
@@ -445,6 +165,7 @@ const QuizContainer = () => {
     setQuizResult({
       questions,
       correctAnswers,
+      totalQuestions: result.numberOfQuestions,
       totalPoints: quizPoints
     })
   }
@@ -456,7 +177,10 @@ const QuizContainer = () => {
         const updatedLevel = Math.floor(updatedPoints / 100) + 1
 
         setPoints(updatedPoints)
-        setLevel(updatedLevel)
+        if (updatedLevel > level) {
+          setLevel(updatedLevel)
+          setLevelUpVisible(true)
+        }
         const questions = quizResult.questions
         const payload = {
           questions,
@@ -470,71 +194,68 @@ const QuizContainer = () => {
           payload,
           { withCredentials: true }
         )
-        console.log('response', response.data.correct)
-        setModalQuizVisible(false)
+        if (response.status === 200) {
+          SuccessNotification({
+            message: 'Respostas enviadas',
+            description: ''
+          })
+        }
       }
     } catch (error) {
       console.error('Error updating user progress:', error)
     }
   }
 
-  const openQuizModal = useCallback(quiz => {
-    setSelectedQuiz(quiz)
-    setModalQuizVisible(true)
-  }, [])
-
   return (
     <div className="quiz-container">
       <h2>Quizzes</h2>
-      <div className="progress">
-        <p>
-          {' '}
-          <FontAwesomeIcon icon={faLevelUpAlt} /> Level: {level}
-        </p>
-        <p>
-          {' '}
-          <FontAwesomeIcon icon={faCoins} /> Points: {points}
-        </p>
-      </div>
+      <hr className="divider" />
       <div className="quiz-list">
-        {quizzes.map(quiz => (
-          <div key={quiz.quizTitle} className="quiz-card">
-            <Button
-              className="modal_button"
-              onClick={() => openQuizModal(quiz)}
-            >
-              Open Quiz {quizzes.indexOf(quiz) + 1}
-            </Button>
-          </div>
-        ))}
-      </div>
-
-      <Modal
-        open={modalQuizVisible}
-        onCancel={() => setModalQuizVisible(false)}
-        footer={[
-          <Button
-            className="modal_button"
-            key="submit"
-            type="primary"
-            onClick={handleSubmit}
-          >
-            Enviar respostas
-          </Button>
-        ]}
-      >
-        {selectedQuiz && (
-          <Quiz
-            quiz={selectedQuiz}
-            shuffle={true}
-            shuffleAnswer={true}
-            showInstantFeedback={true}
-            customResultPage={customResultPage}
-            showDefaultResult={false}
-            onComplete={handleQuizComplete}
-          />
+        {quizzes.length === 0 ? (
+          <p>Nenhum quiz disponível</p>
+        ) : (
+          quizzes.map((quiz, index) => (
+            <div key={quiz.quizTitle} className="quiz-card">
+              <Button
+                className="quiz_button"
+                onClick={() =>
+                  setSelectedQuiz(quiz === selectedQuiz ? null : quiz)
+                }
+              >
+                {selectedQuiz === quiz
+                  ? 'Fechar Quiz'
+                  : `Abrir Quiz ${index + 1}`}
+              </Button>
+              {selectedQuiz === quiz && (
+                <div className="quiz-display">
+                  <Quiz
+                    quiz={selectedQuiz}
+                    shuffle={true}
+                    shuffleAnswer={true}
+                    showInstantFeedback={true}
+                    showDefaultResult={false}
+                    onComplete={handleQuizComplete}
+                  />
+                  <button onClick={handleSubmit}>Enviar respostas</button>
+                  <Modal
+                    open={levelUpVisible}
+                    onCancel={() => setLevelUpVisible(false)}
+                    footer={null}
+                  >
+                    <div className="level-up-modal">
+                      <i className="fas fa-star level-up-icon"></i>{' '}
+                      {/* Ícone de comemoração */}
+                      <h2>Parabéns!</h2>
+                      <p>Você subiu de nível!</p>
+                      <p>Nível atual: {level}</p>
+                    </div>
+                  </Modal>
+                </div>
+              )}
+            </div>
+          ))
         )}
-      </Modal>
+      </div>
     </div>
   )
 }
