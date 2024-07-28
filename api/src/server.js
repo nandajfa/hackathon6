@@ -6,7 +6,29 @@ const authRoutes = require('./routes/authRoutes')
 const adminRoutes = require('./routes/adminQuizRoutes')
 const quizRoutes = require('./routes/quizRoutes')
 const rankingRoutes = require('./routes/rankingRoutes')
-const swagger = require('./plugins/swagger')
+fastify.register(require('@fastify/swagger'), {
+  openapi: {
+    info: {
+      title: 'Quiz App API',
+      description: 'Documentação da API do app de Aprendizado Gamificado',
+      version: '0.0.1'
+    },
+    servers: [
+      {
+        url: 'http://localhost:3003',
+        description: 'Servidor de Desenvolvimento'
+      }
+    ]
+  }
+})
+
+fastify.register(require('@fastify/swagger-ui'), {
+  routePrefix: '/docs',
+  uiConfig: {
+    docExpansion: 'full',
+    deepLinking: false
+  }
+})
 
 fastify.register(cors, {
   origin: (origin, cb) => {
@@ -17,7 +39,6 @@ fastify.register(cors, {
   credentials: true
 })
 fastify.register(formbody)
-fastify.register(swagger)
 fastify.register(authRoutes, { prefix: '/api' })
 fastify.register(adminRoutes, { prefix: '/api' })
 fastify.register(quizRoutes, { prefix: '/api' })
@@ -37,7 +58,6 @@ const start = async () => {
     fastify.log.info(`Server is running at http://localhost:3003`)
   } catch (err) {
     fastify.log.error(err)
-    console.log(err.stack)
     process.exit(1)
   }
 }
