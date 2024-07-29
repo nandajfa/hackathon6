@@ -81,9 +81,13 @@ const getUserById = async userId => {
 }
 
 const updateUserById = async (userId, updates) => {
+  const hashedPassword = await bcrypt.hash(updates.password, 10)
+
   const { data, error } = await supabase
     .from('users')
-    .update(updates)
+    .update([
+      { name: updates.name, email: updates.email, password: hashedPassword }
+    ])
     .eq('id', userId)
     .select('*')
     .single()

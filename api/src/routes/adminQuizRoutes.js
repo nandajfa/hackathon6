@@ -4,11 +4,13 @@ const adminQuizController = require('../controllers/adminQuizController')
 
 async function adminQuizRoutes(fastify, options) {
   fastify.get('/admin/quizzes', {
+    description: 'Obtém uma lista de todos os quizzes disponíveis.',
     preHandler: [authenticate, authorizeAdmin],
     handler: adminQuizController.getAllQuizzes
   })
 
   fastify.get('/admin/quizzes/:id', {
+    description: 'Obtém os detalhes de um quiz específico usando o ID.',
     schema: {
       params: {
         type: 'object',
@@ -24,6 +26,7 @@ async function adminQuizRoutes(fastify, options) {
 
   fastify.post('/admin/quizzes', {
     schema: {
+      description: 'Cria um novo quiz com as informações fornecidas.',
       body: {
         type: 'object',
         required: [
@@ -35,12 +38,18 @@ async function adminQuizRoutes(fastify, options) {
           'difficulty'
         ],
         properties: {
-          question: { type: 'string' },
-          option1: { type: 'string' },
-          option2: { type: 'string' },
-          option3: { type: 'string' },
-          answer: { type: 'string' },
-          difficulty: { type: 'string' }
+          question: { type: 'string', description: 'Pergunta do quiz' },
+          option1: {
+            type: 'string',
+            description: 'Primeira opção de resposta'
+          },
+          option2: { type: 'string', description: 'Segunda opção de resposta' },
+          option3: {
+            type: 'string',
+            description: 'Terceira opção de resposta'
+          },
+          answer: { type: 'string', description: 'Resposta correta' },
+          difficulty: { type: 'string', description: 'Dificuldade do quiz' }
         }
       }
     },
@@ -50,6 +59,7 @@ async function adminQuizRoutes(fastify, options) {
 
   fastify.put('/admin/quizzes/:id', {
     schema: {
+      description: 'Atualiza um quiz existente com as informações fornecidas.',
       body: {
         type: 'object',
         required: [
@@ -61,12 +71,18 @@ async function adminQuizRoutes(fastify, options) {
           'difficulty'
         ],
         properties: {
-          question: { type: 'string' },
-          option1: { type: 'string' },
-          option2: { type: 'string' },
-          option3: { type: 'string' },
-          answer: { type: 'string' },
-          difficulty: { type: 'string' }
+          question: { type: 'string', description: 'Pergunta do quiz' },
+          option1: {
+            type: 'string',
+            description: 'Primeira opção de resposta'
+          },
+          option2: { type: 'string', description: 'Segunda opção de resposta' },
+          option3: {
+            type: 'string',
+            description: 'Terceira opção de resposta'
+          },
+          answer: { type: 'string', description: 'Resposta correta' },
+          difficulty: { type: 'string', description: 'Dificuldade do quiz' }
         }
       }
     },
@@ -76,6 +92,7 @@ async function adminQuizRoutes(fastify, options) {
 
   fastify.delete('/admin/quizzes/:id', {
     schema: {
+      description: 'Deleta um quiz existente pelo ID fornecido.',
       params: {
         type: 'object',
         required: ['id'],

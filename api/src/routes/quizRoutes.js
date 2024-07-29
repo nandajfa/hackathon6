@@ -3,12 +3,16 @@ const authenticate = require('../middleware/authMiddleware')
 
 async function quizRoutes(fastify) {
   fastify.get('/quizzes', {
+    schema: {
+      description: 'Obtém todos os quizzes disponíveis para o usuário.'
+    },
     preHandler: authenticate,
     handler: quizController.getAllQuizzes
   })
 
   fastify.get('/quizzes/progress/:id', {
     schema: {
+      description: 'Obtém o progresso do usuário em um quiz específico.',
       params: {
         type: 'object',
         required: ['id'],
@@ -23,6 +27,7 @@ async function quizRoutes(fastify) {
 
   fastify.get('/quizzes/questions/:id', {
     schema: {
+      description: 'Obtém as perguntas de um quiz específico.',
       params: {
         type: 'object',
         required: ['id'],
@@ -37,6 +42,8 @@ async function quizRoutes(fastify) {
 
   fastify.post('/quizzes/submit', {
     schema: {
+      description:
+        'Submete as respostas do quiz e atualiza o progresso do usuário.',
       body: {
         type: 'object',
         required: ['questions', 'user_id', 'points', 'level'],

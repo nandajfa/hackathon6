@@ -61,6 +61,7 @@ const start = async () => {
     })
     fastify.log.info(`Server is running at http://localhost:3003`)
   } catch (err) {
+    fastify.log.error(err.message)
     fastify.log.error(err)
     process.exit(1)
   }

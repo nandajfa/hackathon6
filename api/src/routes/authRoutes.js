@@ -10,6 +10,7 @@ const authenticate = require('../middleware/authMiddleware')
 
 async function authRoutes(fastify, options) {
   fastify.post('/register', {
+    description: 'Cria um novo usuário com as informações fornecidas.',
     schema: {
       body: {
         type: 'object',
@@ -26,6 +27,7 @@ async function authRoutes(fastify, options) {
 
   fastify.post('/login', {
     schema: {
+      description: 'Realiza o login do usuário com email e senha.',
       body: {
         type: 'object',
         required: ['email', 'password'],
@@ -40,6 +42,7 @@ async function authRoutes(fastify, options) {
 
   fastify.get('/users/:id', {
     schema: {
+      description: 'Obtém os detalhes de um usuário específico usando o ID.',
       params: {
         type: 'object',
         required: ['id'],
@@ -54,6 +57,8 @@ async function authRoutes(fastify, options) {
 
   fastify.put('/users/:id', {
     schema: {
+      description:
+        'Atualiza as informações de um usuário específico usando o ID.',
       body: {
         type: 'object',
         required: ['name', 'email', 'password'],
@@ -76,10 +81,16 @@ async function authRoutes(fastify, options) {
   })
 
   fastify.get('/check-auth', {
+    schema: {
+      description: 'Verifica se o usuário está autenticado.'
+    },
     handler: checkAuthController
   })
 
   fastify.get('/logout', {
+    schema: {
+      description: 'Realiza o logout do usuário.'
+    },
     preHandler: authenticate,
     handler: logoutController
   })

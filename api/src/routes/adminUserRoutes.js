@@ -5,22 +5,7 @@ const authorizeAdmin = require('../middleware/authorizeAdmin')
 async function adminUserRoutes(fastify, options) {
   fastify.get('/admin/users', {
     schema: {
-      description: 'Get all users',
-      tags: ['admin', 'users'],
-      response: {
-        200: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              id: { type: 'string' },
-              name: { type: 'string' },
-              email: { type: 'string' },
-              admin: { type: 'boolean' }
-            }
-          }
-        }
-      }
+      description: 'Obtém uma lista de todos os usuários cadastrados.',
     },
     preHandler: [authenticate, authorizeAdmin],
     handler: adminUserController.getUsers
@@ -28,23 +13,12 @@ async function adminUserRoutes(fastify, options) {
 
   fastify.get('/admin/users/:id', {
     schema: {
-      description: 'Get user by ID',
+      description: 'Obtém os detalhes de um usuário específico usando o ID.',
       tags: ['admin', 'users'],
       params: {
         type: 'object',
         properties: {
           id: { type: 'string' }
-        }
-      },
-      response: {
-        200: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-            name: { type: 'string' },
-            email: { type: 'string' },
-            admin: { type: 'boolean' }
-          }
         }
       }
     },
@@ -54,7 +28,7 @@ async function adminUserRoutes(fastify, options) {
 
   fastify.post('/admin/users', {
     schema: {
-      description: 'Create a new user',
+      description: 'Cria um novo usuário com as informações fornecidas.',
       tags: ['admin', 'users'],
       body: {
         type: 'object',
@@ -65,17 +39,6 @@ async function adminUserRoutes(fastify, options) {
           password: { type: 'string' },
           admin: { type: 'boolean' }
         }
-      },
-      response: {
-        201: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-            name: { type: 'string' },
-            email: { type: 'string' },
-            admin: { type: 'boolean' }
-          }
-        }
       }
     },
     preHandler: [authenticate, authorizeAdmin],
@@ -84,7 +47,8 @@ async function adminUserRoutes(fastify, options) {
 
   fastify.patch('/admin/users/:id', {
     schema: {
-      description: 'Update user by ID',
+      description:
+        'Atualiza as informações de um usuário existente pelo ID fornecido.',
       tags: ['admin', 'users'],
       params: {
         type: 'object',
@@ -100,17 +64,6 @@ async function adminUserRoutes(fastify, options) {
           password: { type: 'string' },
           admin: { type: 'boolean' }
         }
-      },
-      response: {
-        200: {
-          type: 'object',
-          properties: {
-            id: { type: 'string' },
-            name: { type: 'string' },
-            email: { type: 'string' },
-            admin: { type: 'boolean' }
-          }
-        }
       }
     },
     preHandler: [authenticate, authorizeAdmin],
@@ -119,17 +72,11 @@ async function adminUserRoutes(fastify, options) {
 
   fastify.delete('/admin/users/:id', {
     schema: {
-      description: 'Delete user by ID',
-      tags: ['admin', 'users'],
+      escription: 'Deleta um usuário existente pelo ID fornecido.',
       params: {
         type: 'object',
         properties: {
           id: { type: 'string' }
-        }
-      },
-      response: {
-        204: {
-          type: 'null'
         }
       }
     },
