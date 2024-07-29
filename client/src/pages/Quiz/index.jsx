@@ -5,6 +5,7 @@ import axios from 'axios'
 import Quiz from 'react-quiz-component'
 import { Button, Modal } from 'antd'
 import './style.css'
+import { v4 as uuidv4 } from 'uuid'
 
 const QuizContainer = () => {
   const [level, setLevel] = useState(1)
@@ -83,8 +84,26 @@ const QuizContainer = () => {
       questions.forEach(q => groupedQuestions[q.difficulty].push(q))
 
       const formattedQuizzes = []
-      let currentQuiz = { quizTitle: '', quizSynopsis: '', questions: [] }
+      let currentQuiz = {
+        id: uuidv4(),
+        quizTitle: '',
+        quizSynopsis: '',
+        questions: []
+      }
       let quizCounter = 1
+
+      const finalizeCurrentQuiz = () => {
+        if (currentQuiz.questions.length > 0) {
+          currentQuiz.quizTitle = `Quiz ${quizCounter++}`
+          formattedQuizzes.push(currentQuiz)
+          currentQuiz = {
+            id: uuidv4(),
+            quizTitle: '',
+            quizSynopsis: '',
+            questions: []
+          }
+        }
+      }
 
       Object.keys(groupedQuestions).forEach(difficulty => {
         groupedQuestions[difficulty].forEach((question, index) => {
@@ -106,45 +125,16 @@ const QuizContainer = () => {
           })
 
           if (currentQuiz.questions.length === 5) {
-            currentQuiz.quizTitle = `Quiz ${quizCounter++}`
-            currentQuiz.quizSynopsis = `${difficulty}`
-            formattedQuizzes.push(currentQuiz)
-            currentQuiz = { quizTitle: '', quizSynopsis: '', questions: [] }
+            finalizeCurrentQuiz()
           }
 
-          if (
-            index === groupedQuestions[difficulty].length - 1 &&
-            currentQuiz.questions.length > 0
-          ) {
-            if (currentQuiz.questions.length >= 3) {
-              currentQuiz.quizTitle = `Quiz ${quizCounter++}`
-              currentQuiz.quizSynopsis = `${difficulty}`
-              formattedQuizzes.push(currentQuiz)
-            } else if (formattedQuizzes.length > 0) {
-              const lastQuiz = formattedQuizzes[formattedQuizzes.length - 1]
-              if (
-                lastQuiz.questions.length + currentQuiz.questions.length <=
-                5
-              ) {
-                lastQuiz.questions.push(...currentQuiz.questions)
-              } else {
-                const remainingQuestions = 5 - lastQuiz.questions.length
-                lastQuiz.questions.push(
-                  ...currentQuiz.questions.slice(0, remainingQuestions)
-                )
-                currentQuiz.questions =
-                  currentQuiz.questions.slice(remainingQuestions)
-                if (currentQuiz.questions.length >= 3) {
-                  currentQuiz.quizTitle = `Quiz ${quizCounter++}`
-                  currentQuiz.quizSynopsis = `${difficulty}`
-                  formattedQuizzes.push(currentQuiz)
-                }
-              }
-            }
+          if (index === groupedQuestions[difficulty].length - 1) {
+            finalizeCurrentQuiz()
           }
         })
       })
 
+      console.log('Formatted Quizzes:', formattedQuizzes)
       setQuizzes(formattedQuizzes)
     } catch (error) {
       console.error('Error fetching questions:', error)
@@ -212,7 +202,7 @@ const QuizContainer = () => {
           <p>Nenhum quiz disponível</p>
         ) : (
           quizzes.map((quiz, index) => (
-            <div key={quiz.quizTitle} className="quiz-card">
+            <div key={quiz.id} className="quiz-card">
               <Button
                 className="quiz_button"
                 onClick={() =>
