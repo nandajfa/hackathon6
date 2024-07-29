@@ -20,6 +20,7 @@ O objetivo deste hackathon é desenvolver uma plataforma educacional inovadora q
   - [Uso](#uso)
   - [Funcionalidades](#funcionalidades)
   - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+  - [Documentação](#documentação)
   - [Contribuição](#contribuição)
   - [Autor](#autor)
 
@@ -88,6 +89,12 @@ O app será iniciado em http://localhost:3000.
 - Banco de Dados: Supabase (PostgreSQL)
 - Autenticação: JWT
 - Documentação da API: Swagger
+
+## Documentação
+
+A documentação da API é gerada automaticamente usando Swagger. Após iniciar o servidor, você pode acessar a documentação em:
+
+http://localhost:3003/docs
 
 ## Contribuição
 
