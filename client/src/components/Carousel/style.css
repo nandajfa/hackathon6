@@ -8,9 +8,10 @@
   color: #605063;
 }
 
-.feedback h2 {
+.feedback .h2-carousel {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: #605063;
 }
 
 .feedback p {
@@ -21,11 +22,11 @@
 .feedback-item blockquote {
   background: #d3d3d3;
   color: #248f8d;
-  border-radius: 0.5rem; /* 8px */
+  border-radius: 0.5rem;
   padding: 1rem;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* 0 4px 8px */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   margin: 0 auto;
-  max-width: 37.5rem; /* 600px */
+  max-width: 37.5rem;
 }
 
 .feedback-item blockquote p {

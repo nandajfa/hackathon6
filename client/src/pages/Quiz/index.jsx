@@ -134,7 +134,6 @@ const QuizContainer = () => {
         })
       })
 
-      console.log('Formatted Quizzes:', formattedQuizzes)
       setQuizzes(formattedQuizzes)
     } catch (error) {
       console.error('Error fetching questions:', error)

@@ -38,7 +38,7 @@ const FeedbackCarousel = () => {
 
   return (
     <section className="feedback">
-      <h2>Depoimentos</h2>
+      <h2 className="h2-carousel">Depoimentos</h2>
       <p>
         Veja como o <strong>Linguix</strong> está transformando a experiência de
         aprendizado de idiomas de nossos usuários.
