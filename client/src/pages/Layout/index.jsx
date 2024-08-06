@@ -36,7 +36,12 @@ function Layout() {
       try {
         const response = isAuthenticated()
         if (!response) {
-          throw new Error('Não autenticado')
+          // throw new Error('Não autenticado')
+          FailureNotification({
+            message: 'Usuário não autenticado',
+            description: 'Por favor, faça login.'
+          })
+          navigate('/login')
         }
       } catch (error) {
         FailureNotification({
@@ -44,6 +49,7 @@ function Layout() {
           description: 'Por favor, faça login novamente.'
         })
         logout()
+        navigate('/')
       }
     }
     checkAuth()
@@ -60,7 +66,7 @@ function Layout() {
 
     handleResize()
     return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  }, [navigate])
 
   const handleLogout = async () => {
     Modal.confirm({
